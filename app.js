@@ -36,7 +36,11 @@ app.post("/", function(req, res) {
 
     var jsonData = JSON.stringify(data);
 
-    const url = `https://${process.env.MAILCHIMP_API_KEY.split('-')[1]}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}`;
+    const apiKey = process.env.MAILCHIMP_API_KEY;
+    const listId = process.env.MAILCHIMP_LIST_ID;
+
+    const dc = apiKey.split('-')[1];
+    const url = `https://${dc}.api.mailchimp.com/3.0/lists/${listId}`;
 
     const options = {
         method: "POST",
